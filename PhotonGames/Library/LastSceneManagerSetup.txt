@@ -1,0 +1,5 @@
+sceneSetups:
+- path: Assets/L8zerTag/Assets/Scenes/Menu.unity
+  isLoaded: 1
+  isActive: 1
+  isSubScene: 0
