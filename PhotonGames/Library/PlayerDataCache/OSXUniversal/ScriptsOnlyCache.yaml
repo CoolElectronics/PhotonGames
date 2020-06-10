@@ -70,6 +70,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 17052}
     - Class: 114
       Script: {instanceID: 17590}
+    - Class: 114
+      Script: {instanceID: 18024}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 134
@@ -1626,4 +1628,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/Game.unity
-  playerPath: /Users/CoolElectronics/Downloads/MultiplayerL8zerTag-25a05b20e91c6d7968a4a1b7277002a28fc1e3ab/PhotonGames/builds/test8.app
+  playerPath: /Users/CoolElectronics/Downloads/MultiplayerL8zerTag-25a05b20e91c6d7968a4a1b7277002a28fc1e3ab/PhotonGames/builds/test9.app

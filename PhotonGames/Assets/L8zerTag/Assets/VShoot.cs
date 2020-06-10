@@ -21,18 +21,20 @@ public class VShoot : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        if (!pv.IsMine) return;
+        if (!pv.IsMine)
+            return;
         if (Input.GetMouseButtonDown(0) && Input.GetMouseButton(1)){
         RaycastHit hit;
         // Does the ray intersect any objects excluding the player layer
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
         {
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-            Vector3[] points = new Vector3[2];
-            points[0] = transform.position;
-            points[1] = hit.point;
-            GetComponent<LineRenderer>().SetPositions(points);
+
             Debug.Log("Did Hit");
+            if (hit.collider.gameObject.tag == "Player"){
+                Debug.Log("Ow");
+                photonView.RPC("hitPlayer", RpcTarget.All, hit.point, transform.position,hit.collider.gameObject.GetPhotonView().ViewID);
+            }
         }
         }
         if (Input.GetMouseButton(1)){
@@ -44,5 +46,15 @@ public class VShoot : MonoBehaviourPunCallbacks
             controller.strafeSpeed.runningSpeed = vWalk;
             controller.strafeSpeed.sprintSpeed = vRun;
         }
+    }
+    [PunRPC]
+    void hitPlayer(Vector3 hitPoint, Vector3 pos, int victimId){
+            Debug.Log("Ow");
+            Vector3[] points = new Vector3[2];
+            points[0] = pos;
+            points[1] = hitPoint;
+            GetComponent<LineRenderer>().SetPositions(points);
+            GameObject victim = PhotonView.Find(victimId).gameObject;
+            victim.transform.position = new Vector3(122,-17,-28);
     }
 }
